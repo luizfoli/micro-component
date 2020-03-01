@@ -1,16 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
+import { NgModule, Injector} from '@angular/core';
+
+import { LikableCommentComponent } from './shared/likable-comment/likable-comment.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  entryComponents: [LikableCommentComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+  constructor(private injector: Injector) {
+    const el = LikableCommentComponent;
+    customElements.define('likable-comment', el);
+  }
+
+  ngDoBootstrap() {
+
+  }
+}
